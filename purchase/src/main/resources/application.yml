@@ -1,17 +1,17 @@
-#config-server:
-#  hostname: localhost
-#  port: 8081
-#
-#spring:
-#  cloud:
-#    config:
-#      username: root
-#      password: s3cr3t
-#  application:
-#    name: purchase-ws
-#  config:
-#    name: purchase-ws
-#    import: optional:configserver:http://localhost:8081
+config-server:
+  hostname: localhost
+  port: 8081
+
+spring:
+  cloud:
+    config:
+      username: root
+      password: s3cr3t
+  application:
+    name: purchase-ws
+  config:
+    name: purchase-ws
+    import: optional:configserver:http://localhost:8081
 
   # ===============================
   # CONFIG LOCAL
@@ -19,42 +19,42 @@
 
 
 
-server:
-  port: ${PORT:51}
-
-database:
-  hostname: localhost
-  name: mydatabase
-  port: 3306
-
-config-server:
-  hostname: localhost
-  port: 8081
-
-spring:
-  # ===============================
-  # JPA / HIBERNATE
-  jpa:
-    database: mysql
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-  application:
-    name: users-ws
-
-  # ===============================
-  # DB
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${database.hostname}:${database.port}/${database.name}?autoReconnect=true&serverTimezone=America/Bogota&nullCatalogMeansCurrent=true
-    username: myuser
-    password: mypass
-
-registry-service:
-  hostname: localhost
-  port: 8099
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${registry-service.hostname}:${registry-service.port}/eureka
+#server:
+#  port: ${PORT:51}
+#
+#database:
+#  hostname: db-salesmachines-pod2.cnpcwekdzt0w.us-east-1.rds.amazonaws.com
+#  name: db-salesmachines-pod2
+#  port: 3306
+#
+#config-server:
+#  hostname: localhost
+#  port: 8081
+#
+#spring:
+#  # ===============================
+#  # JPA / HIBERNATE
+#  jpa:
+#    database: mysql
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#  application:
+#    name: users-ws
+#
+#  # ===============================
+#  # DB
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://${database.hostname}:${database.port}/${database.name}?autoReconnect=true&serverTimezone=America/Bogota&nullCatalogMeansCurrent=true
+#    username: admin
+#    password: admin123
+#
+#registry-service:
+#  hostname: localhost
+#  port: 8099
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${registry-service.hostname}:${registry-service.port}/eureka

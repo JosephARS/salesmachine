@@ -9,7 +9,7 @@ spring:
 #      label: develop
       server:
         git:
-          uri: https://github.corp.globant.com/tp-COPE/tpam-petspa-podc-api.git
+          uri: https://github.corp.globant.com/tp-COPE/tpam-salesmachine-podb-api.git
           default-label: develop
           search-paths: config-data
           skip-ssl-validation: true
