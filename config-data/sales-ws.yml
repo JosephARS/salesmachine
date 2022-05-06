@@ -1,24 +1,43 @@
+server:
+  port: ${PORT:52}
+
+database:
+  hostname: db-salesmachines-pod2.cnpcwekdzt0w.us-east-1.rds.amazonaws.com
+  name: db-salesmachines-pod2
+  port: 3306
+
 spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+  profiles:
+    active:
+      - awss3
+    #      - local
+    default: awss3
+  # ===============================
+  # JPA / HIBERNATE
   jpa:
+    database: mysql
     show-sql: true
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL57Dialect
+  application:
+    name: sales-ws
+
+  # ===============================
+  # DB
   datasource:
-    url: >-
-      jdbc:mysql://${RDS_HOSTNAME:db-salesmachines-pod2.cnpcwekdzt0w.us-east-1.rds.amazonaws.com}:${RDS_PORT:3306}/${RDS_DB_NAME:db-salesmachines-pod2}?enabledTLSProtocols
-    username: '${RDS_USERNAME:admin}'
-    password: '${RDS_PASSWORD:admin123}'
-  security:
-    user:
-      name: username
-      password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${database.hostname}:${database.port}/${database.name}?autoReconnect=true&serverTimezone=America/Bogota&nullCatalogMeansCurrent=true
+    username: admin
+    password: admin123
+
+registry-service:
+  hostname: localhost
+  port: 8099
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry-service.hostname}:${registry-service.port}/eureka
 logging:
   level:
     org:

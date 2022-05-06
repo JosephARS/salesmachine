@@ -15,6 +15,8 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -53,6 +55,8 @@ public class PurchaseServiceImpl implements PurchaseService {
                     .structure(request.getCheckList().getStructure())
                     .working(request.getCheckList().getWorking())
                     .build());
+
+            sendSimpleMessage(purchase.toString());
 
             return PurchaseDetailsResponse.builder()
                     .idPurchase(purchase.getIdPurchase())
@@ -133,5 +137,20 @@ public class PurchaseServiceImpl implements PurchaseService {
             errors.put("message", e.getMessage());
             return errors;
         }
+    }
+
+
+    @Autowired
+    private JavaMailSender emailSender;
+
+    public void sendSimpleMessage(String text) {
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("joseph.rodriguez@globant.com");
+        message.setTo("joseph.rodriguez@globant.com");
+        message.setSubject("Nueva compra");
+        message.setText(text);
+        emailSender.send(message);
+
     }
 }

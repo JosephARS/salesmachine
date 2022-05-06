@@ -11,7 +11,7 @@ spring:
     name: sales-ws
   config:
     name: sales-ws
-    import: optional:configserver:http://54.91.11.133:8080
+    import: optional:configserver:http://localhost:8081
 
   # ===============================
   # CONFIG LOCAL

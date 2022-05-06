@@ -17,6 +17,10 @@ spring:
           uri: lb://purchase-ws
           predicates:
             - Path=/purchase/**
+        - id: sales-ws
+          uri: lb://sales-ws
+          predicates:
+            - Path=/sales/**
 #        - id: users-ws
 #          uri: lb://users-ws
 #          predicates:

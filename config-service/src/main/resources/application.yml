@@ -1,23 +1,50 @@
 server:
   port: 8081
 
+
+
 spring:
+#  profiles:
+#    active: awss3,composite
+##      - local
+##    default: awss3
   application:
     name: config-server
   cloud:
     config:
-#      label: develop
       server:
+#        composite:
+#        - type: aws
+#          region: us-east-1
+#          bucket: s3-machines-pod2/config-data/
+#        native:
+#          search-locations: classpath:/resources
         git:
+        #  uri: https://github.com/JosephARS/pruebaCloud.git
           uri: https://github.corp.globant.com/tp-COPE/tpam-salesmachine-podb-api.git
           default-label: develop
           search-paths: config-data
           skip-ssl-validation: true
+#          username: JosephARS
+#          password: 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
           username: joseph.rodriguez
           password: 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
 
+#        awss3:
+#          region: us-east-1
+#          bucket: s3-machines-pod2/config-data/
+#        bootstrap: true
   security:
     user:
       name: root
       password: s3cr3t
+
+
+#  main:
+#    allow-bean-definition-overriding: true
+
+amazon:
+  s3:
+    access-key: ASIAR3CAQBU3E74QROPG
+    secret-key: 70K6zYS5MF589ZTGThnmY4rL0msPLafxs/u9VriV
 
